@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 48px;">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>上汽大通D90</title>
+    <link rel="stylesheet" href="./main.css">
+
+    <script type="text/javascript">
+        var webSiteURL = "https://cdn4.maxuscloud.com/ops2/Public/3dwap/"; //_rootURL
+    </script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/three.min.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/loaders/draco/DRACOLoader.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/controls/OrbitControls.js"></script>
+
+
+    <!-- NodeLibrary -->
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/GLNode.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/TempNode.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/InputNode.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/FunctionNode.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/NodeBuilder.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/NodeMaterial.js"></script>
+
+    <!-- Accessors -->
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/accessors/NormalNode.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/accessors/ReflectNode.js"></script>
+    <!-- Inputs -->
+
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/inputs/FloatNode.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/inputs/ColorNode.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/inputs/Vector3Node.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/inputs/CubeTextureNode.js"></script>
+
+    <!-- Math -->
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/math/Math1Node.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/math/Math2Node.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/math/OperatorNode.js"></script>
+
+    <!-- Phong Material -->
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/materials/PhongNode.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/nodes/materials/PhongNodeMaterial.js"></script>
+
+
+
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/Tween.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/Detector.js"></script>
+
+
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/loaders/draco/geometry_helper.js"></script>
+    <script src="./carjs/YappamCar.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/DracoLoaderManage.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/MaterialsManage.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/LightsManage.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/D90Optional.js"></script>
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/DeviceTesting.js"></script>
+
+    <!--内饰全景-->
+    <script src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/pano/krpano.js"></script>
+    <script src="./carjs/YappamCarPano.js"></script>
+    <!-- DRACOL解码器 -->
+    <script id="decoder_script" type="text/javascript" src="https://cdn4.maxuscloud.com/ops2/Public/3dwap/car/D90/js/loaders/draco/draco_decoder.js"></script>
+</head>
+
+<body style="-webkit-tap-highlight-color:rgba(0,0,0,0); tap-highlight-color:rgba(0,0,0,0);">
+
+    <!-- 3D配车 start -->
+    <div class="carsFlash" style="background-size: 7.5rem auto; user-select:none;-webkit-user-select:none;">
+        <div class="carsPic" style="display: block;">
+            <div id="container" style="display: block;">
+                <!-- <canvas width="1080" height="612" style="position: relative; width: 360px; height: 204px;"></canvas> -->
+            </div>
+            <div id="pano" style="width:100%;height:100%;display: none;">
+                <!-- <noscript>
+                        <table style="width:100%;height:100%;">
+                            <tr style="vertical-align:middle;text-align:center;">
+                                <td>ERROR:
+                                    <br>
+                                    <br>Javascript not activated
+                                    <br>
+                                    <br>
+                                </td>
+                            </tr>
+                        </table>
+                    </noscript> -->
+            </div>
+        </div>
+
+        <!-- 指示点 YappamCar.js/844 -->
+        <div id="vBtn_box005" class="waveIcon"></div>
+        <div id="vBtn_box006" class="waveIcon"></div>
+        <div id="vBtn_box008" class="waveIcon"></div>
+        <div id="vBtn_box009" class="waveIcon"></div>
+        <div id="vBtn_box010" class="waveIcon"></div>
+        <a href="javascript:void(0);" class="switchBtn" style="display: none;"></a>
+    </div>
+
+
+    <!--加载loading-->
+    <div class="loadingWrap" style="display: none;">
+        <div class="state__loading-wrap clearfix">
+            <img src="https://cdn4.maxuscloud.com/ops2/Public/Mobile/images/loadingIcon.png" alt="" class="state__loading">
+            <div class="state__loading-txt">
+                <span class="state__percent"></span>
+                <span class="state__loading-tip">加载中...</span>
+            </div>
+        </div>
+        <!-- 进度条 -->
+        <div class="state__progress">
+            <div class="state__progress-bar"></div>
+        </div>
+    </div>
+    <!--加载loading-->
+
+    <script type="text/javascript" src="https://cdn4.maxuscloud.com/ops2/Public/Mobile/js/lib/jquery-1.11.3.min.js"></script>
+
+    <script type="text/javascript">
+        inner_is_the_first_load = true;
+        inner_is_the_first_load_ = true;
+        var default_codes = [ "C00B", "E00N", "215D", "H18X", "N25A", "N12X", "C08H", "C25X", "B001", "J05K", "J07A",
+            "K15P", "K17A", "K60D", "K53B", "K35X", "K36B", "K37A", "K47A", "K48X", "K55X", "S00E", "S47X", "S48X",
+            "S35U", "K04E", "S04F", "C31A", "L15C", "L16A", "N50R", "N56A", "A35E", "M76L", "M19A", "M20X", "M95D",
+            "M77E", "M97X", "M96X", "K62X", "J18A", "Q00D", "Q05A", "J15F", "Q08X", "Q15H", "H10K", "J17X", "H30H",
+            "S41S", "S25V", "Q07X", "S70J", "F00D", "S51C", "S54X", "S30X", "C09X", "T11A", "S42X", "N00M", "N02A",
+            "N06A", "M57A", "K23X", "K20E", "M10F", "440M", "S21X", "F05B", "S67B", "M14E", "M41A", "S45W", "F10J",
+            "F15X", "U07X", "M_00CB", "S68X", "U13X", "R01C", "R10C", "U00G", "U106", "S57X", "T09X", "120T",
+            "1309", "1351", "350E", "410E", "A027", "A03C", "A205", "A50L", "B00L", "B203", "C06C", "D00G", "E15X",
+            "G00C", "G10E", "J00P", "J10T", "J16H", "K08M", "K21D", "K42C", "K50M", "K51B", "K57X", "L00H", "L10C",
+            "L14C", "L20Z", "M01E", "M02G", "M03A", "M11B", "M12A", "M16E", "M36D", "M38M", "M42X", "M58C", "M67C",
+            "M78A", "N09X", "N41D", "Q01F", "Q04X", "Q06X", "Q10X", "Q11D", "Q20D", "Q22D", "Q23X", "Q24X", "Q25B",
+            "Q26B", "R03X", "R05D", "S03R", "S06A", "S08G", "S09F", "S11X", "S14A", "S19X", "S22H", "S23A", "S32M",
+            "S43A", "S46R", "S55C", "S71A", "S75X", "T10A", "U01X", "U05X", "U06X", "U08A", "U11A", "Z10C", "Z15X",
+            "Z16F"
+        ];
+        console.log( default_codes.length );
+        $( function () {
+            //全景返回按钮
+            $( '.switchBtn' ).hide();
+            //初始化小汽车
+            initCarStartFun();
+            //3d显示
+            $( "#container" ).show();
+            addExt();
+            $( ".carsPic" ).show(); //显示3d
+            setCarDoor( true ); //开车门
+        } )
+
+        function carStartFunc() {
+            if ( _deviceType == "Windows" ) {
+                onWindowResize2();
+            } else {
+                onWindowResize3( 454.48823470842814, 67.08895332591105, -577.0373723806254 );
+            }
+            var codes = default_codes;
+            setFeatureList( codes ); //初始化车的外观显示
+            //alert(123);
+            //setIntFeatureList([""]);//初始化车的外观显示
+        }
+
+        //显示内饰
+        function showPano( value ) {
+            if ( value ) {
+                $( "#pano" ).show();
+                if ( !_panoBoo ) {
+                    embedpano( {
+                        swf: webSiteURL + "pano/krpano.swf",
+                        xml: webSiteURL + "pano/dt_pano/contextmenu.xml",
+                        target: "pano",
+                        html5: "auto",
+                        mobilescale: 1.0,
+                        passQueryParameters: true,
+                        onready: krpanoReady,
+                        id: "pano1"
+                    } );
+                    _panoBoo = true;
+                    panoStart();
+
+                    return;
+                }
+                rootViweComplete();
+            } else {
+                $( "#pano" ).hide();
+            }
+
+        }
+
+        function panoReady() {
+            if ( inner_is_the_first_load ) {
+                var codes = default_codes;
+                setIntFeatureList( codes );
+                inner_is_the_first_load = false;
+            }
+        }
+
+        function carExtLoading() {
+            $( '.loadingWrap' ).show();
+        }
+
+        function carExtLoadingEnd() {
+            $( '.loadingWrap' ).hide();
+        }
+        document.addEventListener( 'EnterInterior', function ( e ) {
+            if ( inner_is_the_first_load_ ) {
+                //initCarStartFun();//显示3d
+                $( ".carsPic" ).show();
+                inner_is_the_first_load_ = false;
+            }
+            $( '.switchBtn' ).show();
+            deleteExt(); //隐藏车身
+            $( '#container' ).hide();
+            showPano( true ); //显示内饰
+            $( '.carsFlash' ).show();
+            $( '.waveIcon' ).hide();
+        }, false );
+        $( '.switchBtn' ).on( 'click', function () {
+            $( '.waveIcon' ).show();
+            $( '.switchBtn' ).hide();
+            //3d显示
+            $( "#container" ).show();
+            addExt();
+            $( ".carsPic" ).show(); //显示3d
+            showPano( false ); //隐藏内饰
+            $( '.carsFlash' ).show();
+        } );
+    </script>
+
+</body>
+
+</html>
